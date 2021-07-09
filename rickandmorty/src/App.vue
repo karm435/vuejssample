@@ -1,6 +1,5 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <CharactersList msg="{{this.characters}}"/>
+  <CharactersList :characters="characters"/>
 </template>
 
 <script>
@@ -11,7 +10,7 @@ export default {
   name: 'App',
   data() {
     return {
-      pagingInfo: null,
+      pagingInfo: {},
       characters: [],
     };
   },
@@ -19,11 +18,9 @@ export default {
     CharactersList,
   },
   mounted() {
-    console.log('calling api');
     axios
       .get('https://rickandmortyapi.com/api/character')
       .then((response) => {
-        console.log(response.data);
         this.characters = response.data.results;
         this.pagingInfo = response.data.info;
       });

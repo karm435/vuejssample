@@ -1,15 +1,26 @@
 <template>
-  <div class="hello">
-    <h1>Hellp</h1>
-    <h2>total character count is {{characters?.length}}</h2>
+  <div class="container">
+    <h1>Characters list</h1>
+    <ul id="characters-list">
+      <li v-for="character in characters" :key="character.id">
+        <CharacterCard :character="character"></CharacterCard>
+      </li>
+    </ul>
+
   </div>
 </template>
 
 <script>
+import CharacterCard from './CharacterCard.vue';
+
 export default {
   name: 'CharactersList',
+  components: {
+    CharacterCard,
+  },
   props: {
-    characters: [],
+    characters: Array,
+    msg: String,
   },
 };
 </script>
