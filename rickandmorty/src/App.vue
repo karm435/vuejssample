@@ -1,32 +1,20 @@
 <template>
-  <Pager :pager-info="pagingInfo"></Pager>
-  <CharactersList :characters="characters"/>
+  <Pager></Pager>
+  <CharactersList/>
 </template>
 
 <script>
-import axios from 'axios';
 import CharactersList from './components/CharactersList.vue';
 import Pager from './components/Pager.vue';
 
 export default {
   name: 'App',
-  data() {
-    return {
-      pagingInfo: {},
-      characters: [],
-    };
-  },
   components: {
     CharactersList,
     Pager,
   },
-  mounted() {
-    axios
-      .get('https://rickandmortyapi.com/api/character')
-      .then((response) => {
-        this.characters = response.data.results;
-        this.pagingInfo = response.data.info;
-      });
+  async mounted() {
+    await this.$store.dispatch('load');
   },
 };
 </script>

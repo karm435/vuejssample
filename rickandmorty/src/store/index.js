@@ -25,6 +25,9 @@ const store = createStore({
   },
   actions: {
     nextPage: async ({ commit, state }) => {
+      if (state.pagingInfo.pages === state.currentPage) {
+        return;
+      }
       const response = await axios
         .get(`https://rickandmortyapi.com/api/character/?page=${state.currentPage + 1}`);
       console.log(response.data);

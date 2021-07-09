@@ -2,7 +2,7 @@
   <div class="container">
     <h1>Characters list</h1>
     <ul id="characters-list">
-      <li v-for="character in characters" :key="character.id">
+      <li v-for="character in $store.state.characters" :key="character.id">
         <CharacterCard :character="character"></CharacterCard>
       </li>
     </ul>
@@ -17,10 +17,6 @@ export default {
   name: 'CharactersList',
   components: {
     CharacterCard,
-  },
-  props: {
-    characters: Array,
-    msg: String,
   },
 };
 </script>
