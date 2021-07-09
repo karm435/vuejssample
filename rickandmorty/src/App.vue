@@ -1,10 +1,12 @@
 <template>
+  <Pager :pager-info="pagingInfo"></Pager>
   <CharactersList :characters="characters"/>
 </template>
 
 <script>
 import axios from 'axios';
 import CharactersList from './components/CharactersList.vue';
+import Pager from './components/Pager.vue';
 
 export default {
   name: 'App',
@@ -16,6 +18,7 @@ export default {
   },
   components: {
     CharactersList,
+    Pager,
   },
   mounted() {
     axios
