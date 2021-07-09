@@ -1,12 +1,16 @@
 <template>
   <div class="hello">
     <h1>Hellp</h1>
+    <h2>total character count is {{characters?.length}}</h2>
   </div>
 </template>
 
 <script>
 export default {
   name: 'CharactersList',
+  props: {
+    characters: [],
+  },
 };
 </script>
 
