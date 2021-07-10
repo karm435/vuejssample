@@ -1,9 +1,11 @@
 <template>
+  <SearchBar></SearchBar>
   <Pager></Pager>
   <CharactersList/>
 </template>
 
 <script>
+import SearchBar from '@/components/SearchBar.vue';
 import CharactersList from './components/CharactersList.vue';
 import Pager from './components/Pager.vue';
 
@@ -12,6 +14,7 @@ export default {
   components: {
     CharactersList,
     Pager,
+    SearchBar,
   },
   async mounted() {
     await this.$store.dispatch('load');
