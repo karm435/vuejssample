@@ -1,8 +1,8 @@
 <template>
-  <button v-if="$store.state.pagingInfo.prev" @click="prevPage">prev</button>
+  <button v-if="$store.state.pagingInfo.prev" @click="prevPage($router)">prev</button>
   <span>{{$store.state.currentPage}} of {{$store.state.pagingInfo.pages}}</span>
   <button v-if="$store.state.pagingInfo.next"
-          @click="nextPage">next</button>
+          @click="nextPage($router)">next</button>
 </template>
 
 <script>

@@ -1,6 +1,8 @@
 import { createStore } from 'vuex';
 import axios from 'axios';
 
+const baseUrl = 'https://rickandmortyapi.com/api/character';
+
 const store = createStore({
   state: {
     characters: [],
@@ -33,29 +35,41 @@ const store = createStore({
     },
   },
   actions: {
-    nextPage: async ({ commit, state }) => {
+    nextPage: async ({ commit, state }, router) => {
       if (state.pagingInfo.pages === state.currentPage) {
         return;
       }
       const response = await axios
-        .get(`https://rickandmortyapi.com/api/character/?page=${state.currentPage + 1}`);
-      console.log(response.data);
+        .get(`${baseUrl}/?page=${state.currentPage + 1}`);
+
+      const data = { ...router.query };
+      data.page = state.currentPage + 1;
+      router.push({ name: 'App', query: data });
+
       commit('nextPage', response.data);
     },
-    prevPage: async ({ commit, state }) => {
+    prevPage: async ({ commit, state }, router) => {
       const response = await axios
-        .get(`https://rickandmortyapi.com/api/character/?page=${state.currentPage - 1}`);
+        .get(`${baseUrl}/?page=${state.currentPage - 1}`);
+
+      const data = { ...router.query };
+      data.page = state.currentPage - 1;
+      router.push({ name: 'App', query: data });
 
       commit('prevPage', response.data);
     },
-    load: async ({ commit }) => {
+    load: async ({ commit }, currentPage) => {
+      let url = baseUrl;
+      if (currentPage) {
+        url += `/?page=${currentPage}`;
+      }
       const response = await axios
-        .get('https://rickandmortyapi.com/api/character');
+        .get(url);
       commit('load', response.data);
     },
     showCharacterDetails: async ({ commit }, id) => {
       const response = await axios
-        .get(`https://rickandmortyapi.com/api/character/${id}`);
+        .get(`${baseUrl}/${id}`);
 
       commit('showCharacterDetails', response.data);
     },

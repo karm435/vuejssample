@@ -21,8 +21,13 @@ export default {
     Pager,
     SearchBar,
   },
+  async created() {
+    console.log('route', this.$route.params);
+  },
   async mounted() {
-    await this.$store.dispatch('load');
+    console.log(this.$route.query.page);
+    const currentPage = parseInt(this.$route.query.page, 10) || 1;
+    await this.$store.dispatch('load', currentPage);
   },
 };
 </script>
