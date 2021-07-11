@@ -4,17 +4,25 @@
     <div class="modal">
       <header class="modal-header">
         <span>{{selectedCharacter?.name}}</span>
-        <button
-          type="button"
-          class="btn-close"
-          @click="closeCharacterDetails">
-          x
-        </button>
       </header>
 
       <section class="modal-body">
         <div>{{selectedCharacter?.gender}}</div>
-        <div>Total episodes{{selectedCharacter?.episode?.length}}</div>
+
+        <div class="wrap-collabsible">
+          <input id="collapsible" class="toggle" type="checkbox">
+          <label for="collapsible" class="lbl-toggle">
+            Total episodes: {{selectedCharacter?.episode?.length}}</label>
+          <div class="collapsible-content">
+            <div class="content-inner">
+              <ul v-for="ep in selectedCharacter?.episode" :key="ep">
+                <li class="episodes-list">
+                  <a href="ep">{{ep}}</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </section>
 
       <footer class="modal-footer">
@@ -89,24 +97,17 @@ export default {
   padding: 20px 10px;
 }
 
-.btn-close {
-  position: absolute;
-  top: 0;
-  right: 0;
-  border: none;
-  font-size: 20px;
-  padding: 10px;
-  cursor: pointer;
-  font-weight: bold;
-  color: #4AAE9B;
-  background: transparent;
-}
-
 .btn-green {
   color: white;
   background: #4AAE9B;
   border: 1px solid #4AAE9B;
-  border-radius: 2px;
+  border-radius: 7px;
+  padding: 1rem;
+  cursor: pointer;
+  font-size: medium;
+}
+.btn-green:hover {
+  opacity: 0.9;
 }
 
 .modal-fade-enter,
@@ -117,5 +118,80 @@ export default {
 .modal-fade-enter-active,
 .modal-fade-leave-active {
   transition: opacity .5s ease;
+}
+
+/* expand collapse*/
+.wrap-collabsible {
+  margin-bottom: 1.2rem 0;
+}
+
+input[type='checkbox'] {
+  display: none;
+}
+
+.lbl-toggle {
+  display: block;
+
+  font-weight: bold;
+  font-family: monospace;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  text-align: center;
+
+  padding: 1rem;
+
+  color: #A77B0E;
+  background: #FAE042;
+
+  cursor: pointer;
+
+  border-radius: 7px;
+  transition: all 0.25s ease-out;
+}
+
+.lbl-toggle:hover {
+  color: #7C5A0B;
+}
+
+.lbl-toggle::before {
+  content: ' ';
+  display: inline-block;
+
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 5px solid currentColor;
+  vertical-align: middle;
+  margin-right: .7rem;
+  transform: translateY(-2px);
+
+  transition: transform .2s ease-out;
+}
+
+.toggle:checked + .lbl-toggle::before {
+  transform: rotate(90deg) translateX(-3px);
+}
+
+.collapsible-content {
+  max-height: 0px;
+  overflow: hidden;
+  transition: max-height .25s ease-in-out;
+}
+
+.toggle:checked + .lbl-toggle + .collapsible-content {
+  max-height: 100vh;
+}
+
+.toggle:checked + .lbl-toggle {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.collapsible-content .content-inner {
+  background: rgba(250, 224, 66, .2);
+  border-bottom: 1px solid rgba(250, 224, 66, .45);
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+  padding: .5rem 1rem;
+  max-height: 200px;
 }
 </style>
