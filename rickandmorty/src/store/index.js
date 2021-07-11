@@ -6,6 +6,8 @@ const store = createStore({
     characters: [],
     currentPage: 1,
     pagingInfo: {},
+    isModalDisplaying: false,
+    selectedCharacter: {},
   },
   mutations: {
     load(state, data) {
@@ -21,6 +23,13 @@ const store = createStore({
       state.currentPage = state.currentPage === 1 ? 1 : state.currentPage - 1;
       state.characters = data.results;
       state.pagingInfo = data.info;
+    },
+    showCharacterDetails(state, character) {
+      state.isModalDisplaying = !state.isModalDisplaying;
+      state.selectedCharacter = character;
+    },
+    closeCharacterDetails(state) {
+      state.isModalDisplaying = false;
     },
   },
   actions: {
@@ -43,6 +52,15 @@ const store = createStore({
       const response = await axios
         .get('https://rickandmortyapi.com/api/character');
       commit('load', response.data);
+    },
+    showCharacterDetails: async ({ commit }, id) => {
+      const response = await axios
+        .get(`https://rickandmortyapi.com/api/character/${id}`);
+
+      commit('showCharacterDetails', response.data);
+    },
+    closeCharacterDetails: ({ commit }) => {
+      commit('closeCharacterDetails');
     },
   },
 });

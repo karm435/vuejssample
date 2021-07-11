@@ -6,6 +6,7 @@ const routes = [
     path: '/',
     name: 'App',
     component: App,
+    alias: '/characters',
   },
 ];
 

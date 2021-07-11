@@ -1,8 +1,12 @@
 <template>
-  <img :src="character.image">
-  <div class="characterdetails">{{character.name}}</div>
-  <div class="characterdetails">{{character.species}}</div>
-  <div class="characterdetails">{{character.gender}}</div>
+  <div class="character-card">
+    <img :src="character.image">
+    <div class="name">
+      <a @click="characterClick(character.id)">{{character.name}}</a>
+    </div>
+    <div class="species">{{character.species}}</div>
+    <div class="gender">{{character.gender}}</div>
+  </div>
 </template>
 
 <script>
@@ -11,11 +15,22 @@ export default {
   props: {
     character: Object,
   },
+  methods: {
+    characterClick(id) {
+      console.log(id);
+      this.$store.dispatch('showCharacterDetails', id);
+    },
+  },
 };
 </script>
 
 <style scoped>
-.characterdetails {
+.character-card {
   font-size: 2em;
+}
+
+a:hover{
+  color: orange;
+  cursor: pointer;
 }
 </style>

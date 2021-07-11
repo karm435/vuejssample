@@ -2,9 +2,13 @@
   <SearchBar></SearchBar>
   <Pager></Pager>
   <CharactersList/>
+  <CharacterDetailsPopup v-show="$store.state.isModalDisplaying"
+                         :selected-character="$store.state.selectedCharacter">
+  </CharacterDetailsPopup>
 </template>
 
 <script>
+import CharacterDetailsPopup from '@/components/CharacterDetailsPopup.vue';
 import SearchBar from '@/components/SearchBar.vue';
 import CharactersList from './components/CharactersList.vue';
 import Pager from './components/Pager.vue';
@@ -12,6 +16,7 @@ import Pager from './components/Pager.vue';
 export default {
   name: 'App',
   components: {
+    CharacterDetailsPopup,
     CharactersList,
     Pager,
     SearchBar,
