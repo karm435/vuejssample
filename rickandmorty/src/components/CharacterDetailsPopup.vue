@@ -7,7 +7,11 @@
       </header>
 
       <section class="modal-body">
-        <div>{{selectedCharacter?.gender}}</div>
+        <div class="character-details">
+          <div>{{selectedCharacter?.location?.name}}</div>
+          <div>{{selectedCharacter?.status}}</div>
+          <div>{{selectedCharacter?.origin?.name}}</div>
+        </div>
 
         <div class="wrap-collabsible">
           <input id="collapsible" class="toggle" type="checkbox">

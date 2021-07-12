@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1>Characters list</h1>
+    <h1>The Rick and Morty Characters</h1>
     <ul id="characters-list">
       <li v-for="character in $store.getters.filteredCharacters" :key="character.id">
         <CharacterCard :character="character"></CharacterCard>
