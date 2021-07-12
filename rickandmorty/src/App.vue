@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <SearchBar></SearchBar>
+    <SearchBar class="search-bar"></SearchBar>
   </div>
   <CharactersList/>
   <CharacterDetailsPopup v-show="$store.state.isModalDisplaying"
@@ -47,6 +47,12 @@ export default {
 .header {
   height: 100px;
   background: #2c3e50;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  align-items: center;
+  width: 90%;
+  border-radius: 7px;
 }
 
 .footer {
