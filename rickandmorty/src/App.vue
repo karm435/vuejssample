@@ -1,10 +1,14 @@
 <template>
-  <SearchBar></SearchBar>
-  <Pager></Pager>
+  <div class="header">
+    <SearchBar></SearchBar>
+  </div>
   <CharactersList/>
   <CharacterDetailsPopup v-show="$store.state.isModalDisplaying"
                          :selected-character="$store.state.selectedCharacter">
   </CharacterDetailsPopup>
+  <div class="footer">
+    <Pager></Pager>
+  </div>
 </template>
 
 <script>
@@ -37,8 +41,16 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+.header {
+  height: 100px;
+  background: #2c3e50;
+}
+
+.footer {
+  text-align: center;
+  height: 100px;
 }
 </style>
