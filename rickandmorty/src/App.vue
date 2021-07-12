@@ -41,7 +41,6 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
 }
 
 .header {
@@ -56,7 +55,14 @@ export default {
 }
 
 .footer {
-  text-align: center;
   height: 100px;
+  background: #2c3e50;
+  display: flex;
+  margin: 0 auto;
+  align-items: center;
+  width: 90%;
+  border-radius: 7px;
+  flex-direction: row;
+  justify-content: center;
 }
 </style>
