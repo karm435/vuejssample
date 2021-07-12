@@ -1,19 +1,14 @@
 <template>
-    <input type="search" v-model="keyword">
+    <input type="search" v-model="$store.state.searchTerm" placeholder="Search by character name">
     <button class="searchbtn" @click="searchCharacter" >Search</button>
 </template>
 
 <script>
 export default {
   name: 'SearchBar',
-  data() {
-    return {
-      keyword: '',
-    };
-  },
   methods: {
     searchCharacter() {
-      console.log(this.keyword);
+      console.log(this.$store.state.searchTerm);
     },
   },
 };

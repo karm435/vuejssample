@@ -2,7 +2,7 @@
   <div class="container">
     <h1>Characters list</h1>
     <ul id="characters-list">
-      <li v-for="character in $store.state.characters" :key="character.id">
+      <li v-for="character in $store.getters.filteredCharacters" :key="character.id">
         <CharacterCard :character="character"></CharacterCard>
       </li>
     </ul>

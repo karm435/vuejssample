@@ -10,6 +10,7 @@ const store = createStore({
     pagingInfo: {},
     isModalDisplaying: false,
     selectedCharacter: {},
+    searchTerm: '',
   },
   mutations: {
     load(state, data) {
@@ -75,6 +76,15 @@ const store = createStore({
     },
     closeCharacterDetails: ({ commit }) => {
       commit('closeCharacterDetails');
+    },
+  },
+  getters: {
+    filteredCharacters: (state) => {
+      if (state.searchTerm && state.searchTerm !== '') {
+        return state.characters.filter((c) => c.name
+          .toLowerCase().includes(state.searchTerm.toLowerCase()));
+      }
+      return state.characters;
     },
   },
 });
